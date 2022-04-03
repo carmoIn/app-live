@@ -24,7 +24,7 @@
             </l-layer-group>-->
             <l-geo-json
                 ref="isochromy60"
-                :geojson="geojson"
+                :geojson="geojsonIsochrone60"
                 :options-style="layer60">
             </l-geo-json>
             <l-layer-group
@@ -32,7 +32,7 @@
                 name="Hemodinâmicas">
                 <l-geo-json :geojson="geojsonHemodinamicas"></l-geo-json>
             </l-layer-group>
-            <l-geo-json :geojson="geojson2" :options-style="styleFunction"></l-geo-json>
+            <l-geo-json :geojson="geojsonIsochrone30" :options-style="styleFunction"></l-geo-json>
             <l-layer-group
                 layer-type="overlay"
                 name="Municípios">
@@ -51,8 +51,9 @@
 import "leaflet/dist/leaflet.css"
 
 //import L from "leaflet";
-import { latLng, Icon } from "leaflet";
-import { LMap, LTileLayer, LGeoJson, LControlLayers, LLayerGroup } from "vue2-leaflet";
+import axios from 'axios';
+import { latLng, Icon } from 'leaflet';
+import { LMap, LTileLayer, LGeoJson, LControlLayers, LLayerGroup } from 'vue2-leaflet';
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
@@ -82,14 +83,17 @@ export default {
             geojsonAmbulancia: null,
             geojsonHemodinamicas: null,
             geojsonReperfusao: null,
-            geojson2: null,
-            geojson: null,
+            geojsonIsochrone30: null,
+            geojsonIsochrone60: null,
             counties: null
         };
     },
     methods: {
-        setGeoJson: function (geojson) {
-            this.geojson = geojson;
+        setIsochrone30: function (geojson) {
+            this.geojsonIsochrone30 = geojson;
+        },
+        setIsochrone60: function (geojson) {
+            this.geojsonIsochrone60 = geojson;
             this.zoomToCounty();
         },
         // showing the name of the province
@@ -99,7 +103,6 @@ export default {
             }
         },
         zoomToCounty: function () {
-            console.log('testando zoom');
             setTimeout(() => {
                 const map = this.$refs.map.mapObject;
                 const isochromy60 = this.$refs.isochromy60.mapObject;
@@ -109,12 +112,21 @@ export default {
             }, 200);
         },
         laodLayers: async function (feature) {
-            //const response2 = await fetch('http://localhost:8080/30/4108304.json');
             const geoid = feature.properties.geoid;
             if (geoid) {
-                const response60 = await fetch(`/60/${geoid}.geojson`);
-                //this.geojson2 = await response2.json();
-                this.setGeoJson(await response60.json());
+                let requests = [
+                    `/60/${geoid}.geojson`,
+                ];
+
+                Promise.all(
+                    requests.map((request) => axios.get(request))
+                ).then((
+                    [
+                        {data: response60},
+                    ])=> {
+                        this.setIsochrone60(response60);
+                    }
+                );
             }
         }
     },
@@ -189,14 +201,28 @@ export default {
         },
     },
     async created() {
-        const responseAmbulance = await fetch('/pontos/ambulancias.geojson');
-        const responseHemodynamics = await fetch('/pontos/hemodinamicas.geojson');
-        const responseReperfusion  = await fetch('/pontos/reperfusao_quimica.geojson');
-        const responseCounties = await fetch('/municipios.geojson');
-        this.geojsonAmbulancia = await responseAmbulance.json();
-        this.geojsonHemodinamicas = await responseHemodynamics.json();
-        this.geojsonReperfusao = await responseReperfusion.json();
-        this.counties = await responseCounties.json();
+        let requests = [
+            '/pontos/ambulancias.geojson',
+            '/pontos/hemodinamicas.geojson',
+            '/pontos/reperfusao_quimica.geojson',
+            '/municipios.geojson'
+        ];
+
+        Promise.all(
+            requests.map((request) => axios.get(request))
+        ).then((
+            [
+                {data: ambulances},
+                {data: hemodynamics},
+                {data: reperfusion},
+                {data: counties}
+            ])=> {
+                this.geojsonAmbulancia = ambulances;
+                this.geojsonHemodinamicas = hemodynamics;
+                this.geojsonReperfusao = reperfusion;
+                this.counties = counties;
+            }
+        );
     }
 };
 </script>
