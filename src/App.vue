@@ -112,7 +112,7 @@ export default {
             //const response2 = await fetch('http://localhost:8080/30/4108304.json');
             const geoid = feature.properties.geoid;
             if (geoid) {
-                const response60 = await fetch(`http://localhost:8080/60/${geoid}.geojson`);
+                const response60 = await fetch(`/60/${geoid}.geojson`);
                 //this.geojson2 = await response2.json();
                 this.setGeoJson(await response60.json());
             }
@@ -189,10 +189,10 @@ export default {
         },
     },
     async created() {
-        const responseAmbulance = await fetch('http://localhost:8080/pontos/ambulancias.geojson');
-        const responseHemodynamics = await fetch('http://localhost:8080/pontos/hemodinamicas.geojson');
-        const responseReperfusion  = await fetch('http://localhost:8080/pontos/reperfusao_quimica.geojson');
-        const responseCounties = await fetch('http://localhost:8080/municipios.geojson');
+        const responseAmbulance = await fetch('/pontos/ambulancias.geojson');
+        const responseHemodynamics = await fetch('/pontos/hemodinamicas.geojson');
+        const responseReperfusion  = await fetch('/pontos/reperfusao_quimica.geojson');
+        const responseCounties = await fetch('/municipios.geojson');
         this.geojsonAmbulancia = await responseAmbulance.json();
         this.geojsonHemodinamicas = await responseHemodynamics.json();
         this.geojsonReperfusao = await responseReperfusion.json();
