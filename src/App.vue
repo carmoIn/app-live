@@ -1,5 +1,10 @@
 <template>
     <div id="app">
+        <div
+            v-if="loading"
+            class="loading-overlay">
+            <div class="lds-dual-ring"></div>
+        </div>
         <l-map
             ref="map"
             :zoom="zoom"
@@ -10,7 +15,51 @@
                 position="topright"
                 :collapsed="false"
                 :sort-layers="true"
-            />
+            >
+            </l-control-layers>
+            <l-control
+                class="legend-control"
+                position="bottomright">
+                <div class="legend-content">
+                    <h3 class="legend-title">Legenda</h3>
+                    <div class="legend-item">
+                        <i>
+                            <img src="icons/ambulance.png" style="left: 8px; top: 0px;" width="24">
+                        </i>
+                        <span>Ambulância</span>
+                    </div>
+                    <div class="legend-item">
+                        <i>
+                            <img src="icons/reperfusion.png" style="left: 8px; top: 0px;" width="24">
+                        </i>
+                        <span>Reperfusão Química</span>
+                    </div>
+                    <div class="legend-item">
+                        <i>
+                            <img src="icons/hemodynamic.png" style="left: 8px; top: 0px;" width="24">
+                        </i>
+                        <span>Hemodinâmica</span>
+                    </div>
+                    <div class="legend-item">
+                        <i style="width: 24px; height: 18px;">
+                            <canvas id="legend30"
+                                    height="18" width="24"
+                                    style="background: darkcyan">
+                            </canvas>
+                        </i>
+                        <span>até 30 minutos</span>
+                    </div>
+                    <div class="legend-item">
+                        <i style="width: 24px; height: 18px;">
+                            <canvas id="legend60"
+                                    height="18" width="24"
+                                    style="background: darkcyan">
+                            </canvas>
+                        </i>
+                        <span>até 60 minutos</span>
+                    </div>
+                </div>
+            </l-control>
             <l-tile-layer
                 :url="url"
                 :attribution="attribution"
@@ -27,12 +76,12 @@
                 :geojson="geojsonIsochrone60"
                 :options-style="layer60">
             </l-geo-json>
+            <l-geo-json :geojson="geojsonIsochrone30" :options-style="styleFunction"></l-geo-json>
             <l-layer-group
                 layer-type="overlay"
                 name="Hemodinâmicas">
                 <l-geo-json :geojson="geojsonHemodinamicas"></l-geo-json>
             </l-layer-group>
-            <l-geo-json :geojson="geojsonIsochrone30" :options-style="styleFunction"></l-geo-json>
             <l-layer-group
                 layer-type="overlay"
                 name="Municípios">
@@ -53,7 +102,7 @@ import "leaflet/dist/leaflet.css"
 //import L from "leaflet";
 import axios from 'axios';
 import { latLng, Icon } from 'leaflet';
-import { LMap, LTileLayer, LGeoJson, LControlLayers, LLayerGroup } from 'vue2-leaflet';
+import { LMap, LTileLayer, LGeoJson, LControlLayers, LLayerGroup, LControl } from 'vue2-leaflet';
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
@@ -69,12 +118,14 @@ export default {
         LTileLayer,
         LGeoJson,
         LControlLayers,
+        LControl,
         LLayerGroup
     },
     data: function() {
         return {
+            loading: true,
             zoom: 8,
-            path: "/images/",
+            path: "/icons/",
             center: [-24.637, -51.927],
             url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             attribution:
@@ -96,7 +147,6 @@ export default {
             this.geojsonIsochrone60 = geojson;
             this.zoomToCounty();
         },
-        // showing the name of the province
         showPopupCounty: function(feature, layer) {
             if (feature.properties && feature.properties.NM_MUN) {
                 layer.bindPopup(feature.properties.NM_MUN);
@@ -200,6 +250,8 @@ export default {
             };
         },
     },
+    createLegend: function () {
+    },
     async created() {
         let requests = [
             '/pontos/ambulancias.geojson',
@@ -221,6 +273,7 @@ export default {
                 this.geojsonHemodinamicas = hemodynamics;
                 this.geojsonReperfusao = reperfusion;
                 this.counties = counties;
+                this.loading = false;
             }
         );
     }
@@ -231,4 +284,61 @@ export default {
 body {
     margin: 0;
 }
+.legend-control {
+    display: flex;
+    background: white;
+    border: 2px solid rgba(0,0,0,0.2);
+    background-clip: padding-box;
+}
+.legend-content {
+    display: block;
+    padding: 1rem;
+}
+.legend-title {
+    margin: 3px;
+    padding-bottom: 5px;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.25rem;
+}
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 </style>
