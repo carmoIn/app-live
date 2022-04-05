@@ -74,9 +74,12 @@
             <l-geo-json
                 ref="isochromy60"
                 :geojson="geojsonIsochrone60"
-                :options-style="layer60">
+                :options-style="styleLayer60">
             </l-geo-json>
-            <l-geo-json :geojson="geojsonIsochrone30" :options-style="styleFunction"></l-geo-json>
+            <l-geo-json
+                :geojson="geojsonIsochrone30"
+                :options-style="styleLayer30">
+            </l-geo-json>
             <l-layer-group
                 layer-type="overlay"
                 name="Hemodinâmicas">
@@ -227,7 +230,7 @@ export default {
                 };
             };
         },
-        styleFunction() {
+        styleLayer30() {
             return () => {
                 return {
                     weight: 2,
@@ -238,7 +241,7 @@ export default {
                 };
             };
         },
-        layer60 () {
+        styleLayer60 () {
             return () => {
                 return {
                     weight: 2,
