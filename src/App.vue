@@ -215,7 +215,7 @@ export default {
                         fillColor: "#3388ff",
                         weight: 1,
                         color: "#3388ff",
-                        fillOpacity: 0.2
+                        fillOpacity: 0.1
                     });
                 });
                 layer.on("click", function () {
@@ -229,7 +229,7 @@ export default {
                     fillColor: "#3388ff",
                     weight: 1,
                     color: "#3388ff",
-                    fillOpacity: 0.2
+                    fillOpacity: 0.1
                 };
             };
         },
