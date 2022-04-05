@@ -44,7 +44,7 @@
                         <i style="width: 24px; height: 18px;">
                             <canvas id="legend30"
                                     height="18" width="24"
-                                    style="background: darkcyan">
+                                    style="border: 1px solid black;background: #f778ba;">
                             </canvas>
                         </i>
                         <span>até 30 minutos</span>
@@ -53,7 +53,7 @@
                         <i style="width: 24px; height: 18px;">
                             <canvas id="legend60"
                                     height="18" width="24"
-                                    style="background: darkcyan">
+                                    style="border: 1px solid black;background: #ffff00;">
                             </canvas>
                         </i>
                         <span>até 60 minutos</span>
