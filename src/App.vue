@@ -169,6 +169,7 @@ export default {
             if (geoid) {
                 let requests = [
                     `/60/${geoid}.geojson`,
+                    `/30/${geoid}.geojson`,
                 ];
 
                 Promise.all(
@@ -176,8 +177,10 @@ export default {
                 ).then((
                     [
                         {data: response60},
+                        {data: response30}
                     ])=> {
                         this.setIsochrone60(response60);
+                        this.setIsochrone30(response30);
                     }
                 );
             }
