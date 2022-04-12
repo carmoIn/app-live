@@ -64,7 +64,10 @@
                 :url="url"
                 :attribution="attribution"
             />
-            <l-layer-group v-if="geojsonAmbulancia !== null">
+            <l-layer-group
+                layer-type="overlay"
+                name="Ambulânicas"
+                v-if="geojsonAmbulancia !== null">
                 <l-marker
                     v-for="(item, index) in geojsonAmbulancia"
                     :key="index"
@@ -76,19 +79,10 @@
                     <l-tooltip :content="item.nome_municipio"></l-tooltip>
                 </l-marker>
             </l-layer-group>
-            <l-layer-group v-if="geojsonReperfusao !== null">
-                <l-marker
-                    v-for="(item, index) in geojsonReperfusao"
-                    :key="index"
-                    :lat-lng="item.posicao">
-                    <l-icon
-                        :icon-size=[24,24]
-                        :iconUrl= "'icons/reperfusion.png'">
-                    </l-icon>
-                    <l-tooltip :content="item.nome_municipio"></l-tooltip>
-                </l-marker>
-            </l-layer-group>
-            <l-layer-group v-if="geojsonHemodinamicas !== null">
+            <l-layer-group
+                layer-type="overlay"
+                name="Hemodinâmicas"
+                v-if="geojsonHemodinamicas !== null">
                 <l-marker
                     v-for="(item, index) in geojsonHemodinamicas"
                     :key="index"
@@ -96,6 +90,21 @@
                     <l-icon
                         :icon-size=[24,24]
                         :iconUrl= "'icons/hemodynamic.png'">
+                    </l-icon>
+                    <l-tooltip :content="item.nome_municipio"></l-tooltip>
+                </l-marker>
+            </l-layer-group>
+            <l-layer-group
+                layer-type="overlay"
+                name="Reperfusão Química"
+                v-if="geojsonReperfusao !== null">
+                <l-marker
+                    v-for="(item, index) in geojsonReperfusao"
+                    :key="index"
+                    :lat-lng="item.posicao">
+                    <l-icon
+                        :icon-size=[24,24]
+                        :iconUrl= "'icons/reperfusion.png'">
                     </l-icon>
                     <l-tooltip :content="item.nome_municipio"></l-tooltip>
                 </l-marker>
@@ -109,11 +118,6 @@
                 :geojson="geojsonIsochrone30"
                 :options-style="styleLayer30">
             </l-geo-json>
-            <!--<l-layer-group
-                layer-type="overlay"
-                name="Hemodinâmicas">
-                <l-geo-json :geojson="geojsonHemodinamicas"></l-geo-json>
-            </l-layer-group>-->
             <l-layer-group
                 layer-type="overlay"
                 name="Municípios">
