@@ -44,7 +44,7 @@
                         <i style="width: 24px; height: 18px;">
                             <canvas id="legend30"
                                     height="18" width="24"
-                                    style="border: 1px solid black;background: #f778ba;">
+                                    style="border: 1px solid black;background: #6060f4;">
                             </canvas>
                         </i>
                         <span>até 30 minutos</span>
@@ -53,7 +53,7 @@
                         <i style="width: 24px; height: 18px;">
                             <canvas id="legend60"
                                     height="18" width="24"
-                                    style="border: 1px solid black;background: #ffff00;">
+                                    style="border: 1px solid black;background: #aaa7ee;">
                             </canvas>
                         </i>
                         <span>até 60 minutos</span>
@@ -64,13 +64,42 @@
                 :url="url"
                 :attribution="attribution"
             />
-            <!--<l-layer-group v-if="geojsonHemodinamicas !== null">
+            <l-layer-group v-if="geojsonAmbulancia !== null">
                 <l-marker
-                    v-for="(item, index) in geojsonHemodinamicas.features"
+                    v-for="(item, index) in geojsonAmbulancia"
                     :key="index"
-                    :lat-lng.sync="item.geometry.coordinates">
+                    :lat-lng="item.posicao">
+                    <l-icon
+                        :icon-size=[24,24]
+                        :iconUrl= "'icons/ambulance.png'">
+                    </l-icon>
+                    <l-tooltip :content="item.nome_municipio"></l-tooltip>
                 </l-marker>
-            </l-layer-group>-->
+            </l-layer-group>
+            <l-layer-group v-if="geojsonReperfusao !== null">
+                <l-marker
+                    v-for="(item, index) in geojsonReperfusao"
+                    :key="index"
+                    :lat-lng="item.posicao">
+                    <l-icon
+                        :icon-size=[24,24]
+                        :iconUrl= "'icons/reperfusion.png'">
+                    </l-icon>
+                    <l-tooltip :content="item.nome_municipio"></l-tooltip>
+                </l-marker>
+            </l-layer-group>
+            <l-layer-group v-if="geojsonHemodinamicas !== null">
+                <l-marker
+                    v-for="(item, index) in geojsonHemodinamicas"
+                    :key="index"
+                    :lat-lng="item.posicao">
+                    <l-icon
+                        :icon-size=[24,24]
+                        :iconUrl= "'icons/hemodynamic.png'">
+                    </l-icon>
+                    <l-tooltip :content="item.nome_municipio"></l-tooltip>
+                </l-marker>
+            </l-layer-group>
             <l-geo-json
                 ref="isochromy60"
                 :geojson="geojsonIsochrone60"
@@ -80,11 +109,11 @@
                 :geojson="geojsonIsochrone30"
                 :options-style="styleLayer30">
             </l-geo-json>
-            <l-layer-group
+            <!--<l-layer-group
                 layer-type="overlay"
                 name="Hemodinâmicas">
                 <l-geo-json :geojson="geojsonHemodinamicas"></l-geo-json>
-            </l-layer-group>
+            </l-layer-group>-->
             <l-layer-group
                 layer-type="overlay"
                 name="Municípios">
@@ -105,7 +134,7 @@ import "leaflet/dist/leaflet.css"
 //import L from "leaflet";
 import axios from 'axios';
 import { latLng, Icon } from 'leaflet';
-import { LMap, LTileLayer, LGeoJson, LControlLayers, LLayerGroup, LControl } from 'vue2-leaflet';
+import { LMap, LTileLayer, LGeoJson, LControlLayers, LLayerGroup, LControl, LMarker, LIcon, LTooltip } from 'vue2-leaflet';
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
@@ -122,7 +151,10 @@ export default {
         LGeoJson,
         LControlLayers,
         LControl,
-        LLayerGroup
+        LLayerGroup,
+        LMarker,
+        LIcon,
+        LTooltip
     },
     data: function() {
         return {
@@ -212,9 +244,9 @@ export default {
                     this.closePopup();
                     // style
                     this.setStyle({
-                        fillColor: "#3388ff",
+                        fillColor: "#1d1e1f",
                         weight: 1,
-                        color: "#3388ff",
+                        color: "#1d1e1f",
                         fillOpacity: 0.1
                     });
                 });
@@ -226,9 +258,9 @@ export default {
         styleMunicipio() {
             return () => {
                 return {
-                    fillColor: "#3388ff",
+                    fillColor: "#1d1e1f",
                     weight: 1,
-                    color: "#3388ff",
+                    color: "#1d1e1f",
                     fillOpacity: 0.1
                 };
             };
@@ -237,9 +269,9 @@ export default {
             return () => {
                 return {
                     weight: 2,
-                    color: "#ECEFF1",
+                    color: "#000",
                     opacity: 1,
-                    fillColor: "#FF00FF",
+                    fillColor: "#6060f4",
                     fillOpacity: 0.5
                 };
             };
@@ -248,9 +280,9 @@ export default {
             return () => {
                 return {
                     weight: 2,
-                    color: "#ECEFF1",
+                    color: "#000",
                     opacity: 1,
-                    fillColor: "#FFFF00",
+                    fillColor: "#aaa7ee",
                     fillOpacity: 0.5
                 };
             };
@@ -260,9 +292,9 @@ export default {
     },
     async created() {
         let requests = [
-            '/pontos/ambulancias.geojson',
-            '/pontos/hemodinamicas.geojson',
-            '/pontos/reperfusao_quimica.geojson',
+            '/pontos/ambulancias.json',
+            '/pontos/hemodinamicas.json',
+            '/pontos/reperfusao_quimica.json',
             '/municipios.geojson'
         ];
 

@@ -1,0 +1,326 @@
+[
+  {
+    "nome_municipio": "CAMPO MOURÃO",
+    "codigo_geo": 4104303,
+    "codigo_ibge": 410430,
+    "posicao": {
+      "lat": -24.13,
+      "lng": -52.379
+    }
+  },
+  {
+    "nome_municipio": "CASCAVEL",
+    "codigo_geo": 4104808,
+    "codigo_ibge": 410480,
+    "posicao": {
+      "lat": -25.346,
+      "lng": -51.532
+    }
+  },
+  {
+    "nome_municipio": "CHOPINZINHO",
+    "codigo_geo": 4105409,
+    "codigo_ibge": 410540,
+    "posicao": {
+      "lat": -25.812,
+      "lng": -52.451
+    }
+  },
+  {
+    "nome_municipio": "CIANORTE",
+    "codigo_geo": 4105508,
+    "codigo_ibge": 410550,
+    "posicao": {
+      "lat": -23.727,
+      "lng": -52.627
+    }
+  },
+  {
+    "nome_municipio": "FRANCISCO BELTRÃO",
+    "codigo_geo": 4108403,
+    "codigo_ibge": 410840,
+    "posicao": {
+      "lat": -26.048,
+      "lng": -53.133
+    }
+  },
+  {
+    "nome_municipio": "GOIOERÊ",
+    "codigo_geo": 4108601,
+    "codigo_ibge": 410860,
+    "posicao": {
+      "lat": -24.173,
+      "lng": -53.052
+    }
+  },
+  {
+    "nome_municipio": "GUAÍRA",
+    "codigo_geo": 4108809,
+    "codigo_ibge": 410880,
+    "posicao": {
+      "lat": -24.191,
+      "lng": -54.231
+    }
+  },
+  {
+    "nome_municipio": "IVAIPORÃ",
+    "codigo_geo": 4111506,
+    "codigo_ibge": 411150,
+    "posicao": {
+      "lat": -24.283,
+      "lng": -51.629
+    }
+  },
+  {
+    "nome_municipio": "LOANDA",
+    "codigo_geo": 4113502,
+    "codigo_ibge": 411350,
+    "posicao": {
+      "lat": -22.949,
+      "lng": -53.071
+    }
+  },
+  {
+    "nome_municipio": "MARINGÁ",
+    "codigo_geo": 4115200,
+    "codigo_ibge": 411520,
+    "posicao": {
+      "lat": -23.401,
+      "lng": -51.968
+    }
+  },
+  {
+    "nome_municipio": "MEDIANEIRA",
+    "codigo_geo": 4115804,
+    "codigo_ibge": 411580,
+    "posicao": {
+      "lat": -25.263,
+      "lng": -54.092
+    }
+  },
+  {
+    "nome_municipio": "PALOTINA",
+    "codigo_geo": 4117909,
+    "codigo_ibge": 411790,
+    "posicao": {
+      "lat": -24.275,
+      "lng": -53.824
+    }
+  },
+  {
+    "nome_municipio": "PARANAVAÍ",
+    "codigo_geo": 4118402,
+    "codigo_ibge": 411840,
+    "posicao": {
+      "lat": -22.921,
+      "lng": -52.511
+    }
+  },
+  {
+    "nome_municipio": "PATO BRANCO",
+    "codigo_geo": 4118501,
+    "codigo_ibge": 411850,
+    "posicao": {
+      "lat": -26.169,
+      "lng": -52.663
+    }
+  },
+  {
+    "nome_municipio": "QUEDAS DO IGUAÇU",
+    "codigo_geo": 4120903,
+    "codigo_ibge": 412090,
+    "posicao": {
+      "lat": -25.457,
+      "lng": -52.955
+    }
+  },
+  {
+    "nome_municipio": "REALEZA",
+    "codigo_geo": 4121406,
+    "codigo_ibge": 412140,
+    "posicao": {
+      "lat": -25.674,
+      "lng": -53.544
+    }
+  },
+  {
+    "nome_municipio": "SANTA HELENA",
+    "codigo_geo": 4123501,
+    "codigo_ibge": 412350,
+    "posicao": {
+      "lat": -24.889,
+      "lng": -54.306
+    }
+  },
+  {
+    "nome_municipio": "TOLEDO",
+    "codigo_geo": 4127700,
+    "codigo_ibge": 412770,
+    "posicao": {
+      "lat": -24.765,
+      "lng": -53.787
+    }
+  },
+  {
+    "nome_municipio": "UMUARAMA",
+    "codigo_geo": 4128104,
+    "codigo_ibge": 412810,
+    "posicao": {
+      "lat": -24.778,
+      "lng": -53.765
+    }
+  },
+  {
+    "nome_municipio": "ALMIRANTE TAMANDARÉ",
+    "codigo_geo": 4100400,
+    "codigo_ibge": 410040,
+    "posicao": {
+      "lat": -25.296,
+      "lng": -49.324
+    }
+  },
+  {
+    "nome_municipio": "ARAUCÁRIA",
+    "codigo_geo": 4101804,
+    "codigo_ibge": 410180,
+    "posicao": {
+      "lat": -25.609,
+      "lng": -49.441
+    }
+  },
+  {
+    "nome_municipio": "CAMPO LARGO",
+    "codigo_geo": 4104204,
+    "codigo_ibge": 410420,
+    "posicao": {
+      "lat": -25.292,
+      "lng": -49.619
+    }
+  },
+  {
+    "nome_municipio": "CORNÉLIO PROCÓPIO",
+    "codigo_geo": 4106407,
+    "codigo_ibge": 410640,
+    "posicao": {
+      "lat": -23.226,
+      "lng": -50.624
+    }
+  },
+  {
+    "nome_municipio": "CURITIBA",
+    "codigo_geo": 4106902,
+    "codigo_ibge": 410690,
+    "posicao": {
+      "lat": -25.461,
+      "lng": -49.343
+    }
+  },
+  {
+    "nome_municipio": "IBAITI",
+    "codigo_geo": 4109708,
+    "codigo_ibge": 410970,
+    "posicao": {
+      "lat": -23.778,
+      "lng": -50.287
+    }
+  },
+  {
+    "nome_municipio": "JACAREZINHO",
+    "codigo_geo": 4111803,
+    "codigo_ibge": 411180,
+    "posicao": {
+      "lat": -23.151,
+      "lng": -49.947
+    }
+  },
+  {
+    "nome_municipio": "LONDRINA",
+    "codigo_geo": 4113700,
+    "codigo_ibge": 411370,
+    "posicao": {
+      "lat": -23.514,
+      "lng": -51.11
+    }
+  },
+  {
+    "nome_municipio": "PARANAGUÁ",
+    "codigo_geo": 4118204,
+    "codigo_ibge": 411820,
+    "posicao": {
+      "lat": -25.527,
+      "lng": -48.518
+    }
+  },
+  {
+    "nome_municipio": "PINHAIS",
+    "codigo_geo": 4119152,
+    "codigo_ibge": 411915,
+    "posicao": {
+      "lat": -25.42,
+      "lng": -49.156
+    }
+  },
+  {
+    "nome_municipio": "PONTA GROSSA",
+    "codigo_geo": 4119905,
+    "codigo_ibge": 411990,
+    "posicao": {
+      "lat": -25.169,
+      "lng": -50.08
+    }
+  },
+  {
+    "nome_municipio": "SÃO JOSÉ DOS PINHAIS",
+    "codigo_geo": 4125506,
+    "codigo_ibge": 412550,
+    "posicao": {
+      "lat": -25.664,
+      "lng": -49.095
+    }
+  },
+  {
+    "nome_municipio": "APUCARANA",
+    "codigo_geo": 4101408,
+    "codigo_ibge": 410140,
+    "posicao": {
+      "lat": -23.572,
+      "lng": -51.446
+    }
+  },
+  {
+    "nome_municipio": "ARAPONGAS",
+    "codigo_geo": 4101507,
+    "codigo_ibge": 410150,
+    "posicao": {
+      "lat": -23.441,
+      "lng": -51.428
+    }
+  },
+  {
+    "nome_municipio": "GUARAPUAVA",
+    "codigo_geo": 4109401,
+    "codigo_ibge": 410940,
+    "posicao": {
+      "lat": -25.322,
+      "lng": -51.487
+    }
+  },
+  {
+    "nome_municipio": "ROLÂNDIA",
+    "codigo_geo": 4122404,
+    "codigo_ibge": 412240,
+    "posicao": {
+      "lat": -23.271,
+      "lng": -51.409
+    }
+  },
+  {
+    "nome_municipio": "FOZ DO IGUAÇU",
+    "codigo_geo": 4108304,
+    "codigo_ibge": 410830,
+    "posicao": {
+      "lat": -25.466,
+      "lng": -54.483
+    }
+  }
+]
