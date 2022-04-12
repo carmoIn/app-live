@@ -175,7 +175,8 @@ export default {
             geojsonReperfusao: null,
             geojsonIsochrone30: null,
             geojsonIsochrone60: null,
-            counties: null
+            counties: null,
+            selectedCounty: null
         };
     },
     methods: {
@@ -201,11 +202,11 @@ export default {
             }, 200);
         },
         laodLayers: async function (feature) {
-            const geoid = feature.properties.geoid;
-            if (geoid) {
+            this.selectedCounty = feature.properties.geoid
+            if (this.selectedCounty) {
                 let requests = [
-                    `/60/${geoid}.geojson`,
-                    `/30/${geoid}.geojson`,
+                    `/60/${this.selectedCounty}.geojson`,
+                    `/30/${this.selectedCounty}.geojson`,
                 ];
 
                 Promise.all(
@@ -233,16 +234,18 @@ export default {
                 let self = this;
 
                 layer.on("mouseover", function () {
-                    // bindPopup
-                    self.showPopupCounty(feature, layer);
-                    this.openPopup();
-                    // style
-                    this.setStyle({
-                        fillColor: "#eb4034",
-                        weight: 1,
-                        color: "#eb4034",
-                        fillOpacity: 0.7
-                    });
+                    if (self.selectedCounty !== feature.properties.geoid) {
+                        // bindPopup
+                        self.showPopupCounty(feature, layer);
+                        this.openPopup();
+                        // style
+                        this.setStyle({
+                            fillColor: "#1d1e1f",
+                            weight: 1,
+                            color: "#1d1e1f",
+                            fillOpacity: 0.3
+                        });
+                    }
                 });
                 layer.on("mouseout", function () {
                     this.closePopup();
