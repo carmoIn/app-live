@@ -137,7 +137,7 @@ import "leaflet/dist/leaflet.css"
 
 //import L from "leaflet";
 import axios from 'axios';
-import { latLng, Icon } from 'leaflet';
+import { Icon } from 'leaflet';
 import { LMap, LTileLayer, LGeoJson, LControlLayers, LLayerGroup, LControl, LMarker, LIcon, LTooltip } from 'vue2-leaflet';
 
 delete Icon.Default.prototype._getIconUrl;
@@ -169,7 +169,6 @@ export default {
             url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             attribution:
                 '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-            marker: latLng(47.41322, -1.219482),
             geojsonAmbulancia: null,
             geojsonHemodinamicas: null,
             geojsonReperfusao: null,
